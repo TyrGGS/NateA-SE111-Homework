@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Nate" content="n8socool">
+    <title>Payroll Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Payroll Calculator</h1>
+
+    <div id="output"></div>
+
+    <script>
+        //  INPUTS 
+        var  hourlyPay = Number(prompt("Enter hourly pay:\n"));
+        var  hoursPerWeek = Number(prompt("Enter hours worked per week:\n"));
+        var  taxRate = Number(prompt("Enter tax rate (as decimal):\n"));
+
+        //  PROCESS 
+        var  weeks = 2;
+        var  grossPay = hourlyPay * hoursPerWeek * weeks;
+        var  taxAmount = grossPay * taxRate;
+        var  netPay = grossPay - taxAmount;
+
+        //  FORMAT 
+        var  grossFormatted = grossPay.toFixed(2);
+        var  taxFormatted = taxAmount.toFixed(2);
+        var  netFormatted = netPay.toFixed(2);
+
+        //  OUTPUT (ALERT) 
+        alert(
+            "Gross Pay: $" + grossFormatted + "\n" +
+            "Uncle Sam's Share: $" + taxFormatted + "\n" +
+            "Net Pay: $" + netFormatted
+        );
+
+        //  OUTPUT (CONSOLE) 
+        console.log("Gross Pay: $" + grossFormatted);
+        console.log("Uncle Sam's Share: $" + taxFormatted);
+        console.log("Net Pay: $" + netFormatted);
+
+        //  EXTRA CHALLENGE (HTML DISPLAY) 
+        document.getElementById("output").innerHTML =
+            "Gross Pay: $" + grossFormatted + "<br>" +
+            "Uncle Sam's Share: $" + taxFormatted + "<br>" +
+            "Net Pay: $" + netFormatted;
+    </script>
+
+</body>
+</html>
