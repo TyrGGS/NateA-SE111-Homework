@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Nathan Asstafan">
+    <meta name="description" content="Week 7 Assignment practicing Javascript & HTML">
+
+    <title>Week 7 | Pay Form Calculator Assignment</title>
+</head>
+
+<body>
+
+    <h1>Pay Calculator Form</h1>
+
+    <form>
+
+        <label for="first">First Name: </label>
+        <input type="text" id="first">
+
+        <br>
+
+        <label for="last">Last Name: </label>
+        <input type="text" id="last">
+
+        <br>
+
+        <label for="hours">Hours Worked: </label>
+        <input type="text" id="hours">
+
+        <br>
+
+        <label for="rate">Hourly Rate: </label>
+        <input type="text" id="rate">
+
+        <br>
+        <br>
+
+        <input type="button" id="enter-button" value="Enter">
+
+        <br>
+        <br>
+
+        <div id="final" style="border:1px solid rgb(87, 86, 86); padding:15px; background-color:rgb(168, 168, 168);">
+
+            <h3>Employee Info:</h3>
+
+            <p id="info" style="font-family:Courier New, monospace;">
+                <i>Information will be loaded once above form is filled.</i>
+            </p>
+
+            <p id="check" style="font-family:Courier New, monospace; width:220px; text-align:right;"></p>
+
+        </div>
+
+        <br>
+        <br>
+
+        <h3><i>If the above information is correct, please press "SUBMIT"</i></h3>
+
+        <input type="button" id="submit" value="SUBMIT">
+
+    </form>
+
+    <script>
+
+        document.querySelector(`#enter-button`).addEventListener(`click`, alertName)
+
+        function alertName(e)
+        {
+
+            // values from form
+
+            var fname = document.querySelector(`#first`).value
+            var lname = document.querySelector(`#last`).value
+
+            var hours = document.querySelector(`#hours`).value
+            var rate = document.querySelector(`#rate`).value
+
+            // console logs
+
+            console.log(fname)
+            console.log(lname)
+            console.log(hours)
+            console.log(rate)
+
+            // full name
+
+            var full = `${fname} ${lname}`
+
+            console.log(full)
+
+            // convert to numbers
+
+            hours = Number(hours)
+            rate = Number(rate)
+
+            // calculations
+
+            var gross = hours * rate
+            var taxAmount = gross * .2
+            var net = gross - taxAmount
+
+            // processed values
+
+            console.log(gross.toFixed(2))
+            console.log(taxAmount.toFixed(2))
+            console.log(net.toFixed(2))
+
+            // message for top box
+
+            var finalMessage = `
+                NAME: ${full}<br>
+                HOURS: ${hours.toFixed(2)}<br>
+                RATE: $${rate.toFixed(2)}
+            `
+
+            // html elements
+
+            var info = document.querySelector(`#info`)
+            var check = document.querySelector(`#check`)
+
+            // update html
+
+            info.innerHTML = finalMessage
+
+            check.innerHTML = `
+                GROSS PAY: $${gross.toFixed(2)}<br>
+                TAX AMOUNT: $${taxAmount.toFixed(2)}<br>
+                NET PAY: $${net.toFixed(2)}
+            `
+
+            // submit button
+
+            document.querySelector(`#submit`).addEventListener(`click`, submitNow)
+
+            function submitNow(e)
+            {
+
+                alert(`
+Name: ${full}
+Hours: ${hours}
+Rate: $${rate.toFixed(2)}
+
+Gross Pay: $${gross.toFixed(2)}
+Tax Amount: $${taxAmount.toFixed(2)}
+Net Pay: $${net.toFixed(2)}
+`)
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
